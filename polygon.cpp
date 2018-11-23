@@ -17,10 +17,11 @@ int main()
     float *xValues = new float[coordinates];
     float *yValues = new float[coordinates];
     float circumference;
-    float position;
+    float positionX;
+    float positionY;
 
     std::ifstream testFile;
-    testFile.open("test.txt", std::ios::out);
+    testFile.open("test.txt");
 
     if(testFile.is_open())
     {
@@ -30,11 +31,12 @@ int main()
         }
     }
     testFile.close();
-    testFile.open("test.txt", std::ios::out);
+    testFile.open("test.txt");
         for(int i = 0; i < coordinates; i++)
         {  
         testFile >> firstArray[i];
         }
+
             for(int i = 0; i < coordinates/2; i++)
             {
             xCoord[i] = firstArray[xBuffer];
@@ -50,22 +52,36 @@ int main()
                 xValues[i] += xCoord[i] * yCoord[i+1];
                 if(yCoord[i+1] <= 0)
                 {
-                    yCoord[i] = yCoord[i];
-                    xValues[i] += xCoord[i] * yCoord[i-i];
+                    yCoord[i+1] = yCoord[i];
+                    xValues[i] += xCoord[i] * yCoord[0];
                 }
                 std::cout << xValues[i] << "\n";
             }
+
             for(int i = 0; i < coordinates/2; i++)
             {
                 yValues[i] += yCoord[i] * xCoord[i+1];
                 if(xCoord[i+1] <= 0)
                 {
-                    xCoord[i] = xCoord[i];
-                    yValues[i] += yCoord[i] * xCoord[i-i];
-                } 
+                    xCoord[i+1] = xCoord[i];
+                    yValues[i] += yCoord[i] * xCoord[0];
+                }
                 std::cout << yValues[i] << "\n";
             }
 
+            for(int i = 0; i < coordinates/2; i++)
+            {
+                positionX += xCoord[i];
+            }
+                positionX /= (coordinates/2);
+
+            for(int i = 0; i < coordinates/2; i++)
+            {
+                positionY += yCoord[i];
+            }
+                positionY /= (coordinates/2);
+
+                std::cout << "The center position is (" << positionX << "," << positionY << ")" << "\n";
 
     system("pause");
     return 0;
