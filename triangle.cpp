@@ -20,13 +20,11 @@ int main()
     float distanceOne;
     float distanceTwo;
     float distanceThree;
-    float hypotenusa;
-    float height;
-    float base;
     float area;
     float circumference;
     float positionX;
     float positionY;
+    float allSides;
 
     std::ifstream testFile;
     testFile.open("test.txt", std::ios::out);
@@ -61,48 +59,17 @@ int main()
             sideOne = sqrt(distanceOne);
             sideTwo = sqrt(distanceTwo);
             sideThree = sqrt(distanceThree);
+            allSides = (sideOne + sideTwo + sideThree)/2;
 
-                if(sideOne > sideTwo && sideOne > sideThree)
-                {
-                    hypotenusa = sideOne;
-                }
-                
-                if(sideTwo > sideOne && sideTwo > sideThree)
-                {
-                    hypotenusa = sideTwo;
-                }
-                
-                if(sideThree > sideTwo && sideThree > sideOne)
-                {
-                    hypotenusa = sideThree;
-                }
-
-                if(sideOne == hypotenusa)
-                {
-                    height = sideTwo;
-                    base = sideThree;
-                }
-                if(sideTwo == hypotenusa)
-                {
-                    height = sideOne;
-                    base = sideThree;
-                }
-                if(sideThree == hypotenusa)
-                {
-                    height = sideTwo;
-                    base = sideOne;
-                }
-                area = (base*height)/2.0f;
-                
+            area = sqrt((allSides*(allSides - sideOne)) * (allSides - sideTwo) * (allSides - sideThree));
          
-                
-                positionX = ((xCoord[0] + xCoord[1] + xCoord[2])/3);
-                positionY = ((yCoord[0] + yCoord[1] + yCoord[2])/3);
-                circumference = sideOne + sideTwo + sideThree;
+            positionX = ((xCoord[0] + xCoord[1] + xCoord[2])/3);
+            positionY = ((yCoord[0] + yCoord[1] + yCoord[2])/3);
+            circumference = sideOne + sideTwo + sideThree;
 
-                std::cout << "The area for the Triangle is: " << area << "\n";
-                std::cout << "The circumference is: " << circumference << "\n";
-                std::cout << "The center position is (" << positionX << "," << positionY << ")" << "\n";
+            std::cout << "The area for the Triangle is: " << area << "\n";
+            std::cout << "The circumference is: " << circumference << "\n";
+            std::cout << "The center position is (" << positionX << "," << positionY << ")" << "\n";
             
             system("pause");
             return 0;

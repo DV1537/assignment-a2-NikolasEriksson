@@ -17,6 +17,9 @@ int main()
     float positionY;
     float area;
     float total;
+    bool convex = true;
+    float averageOne;
+    float averageTwo;
 
     std::ifstream testFile;
     testFile.open("test.txt");
@@ -35,6 +38,10 @@ int main()
     float *yValues = new float[halfCoordinates];
     float *xCoord = new float[halfCoordinates];
     float *yCoord = new float[halfCoordinates];
+    float *concaveX = new float[halfCoordinates];
+    float *concaveY = new float[halfCoordinates];
+    float *distanceOne = new float[halfCoordinates];
+    float *distanceTwo = new float[halfCoordinates];
     testFile.close();
     testFile.open("test.txt");
         for(int i = 0; i < coordinates; i++)
@@ -77,6 +84,56 @@ int main()
                 positionY /= halfCoordinates;
 
                 std::cout << "The center position is (" << positionX << "," << positionY << ")" << "\n";
+
+            for(int i = 0; i < halfCoordinates; i++)
+            {
+                concaveX[i] = ((xCoord[i] + xCoord[i+1] + xCoord[j])/3);
+                if( i+1 >= halfCoordinates)
+                {
+                    concaveX[i] = ((xCoord[i] + xCoord[0] + xCoord[j])/3);
+                }
+                concaveY[i] = ((yCoord[i] + yCoord[i+1] + yCoord[j])/3);
+                if( i+1 >= halfCoordinates)
+                {
+                    concaveY[i] = ((yCoord[i] + yCoord[0] + yCoord[j])/3);  
+                }
+                j = i;
+                std::cout << concaveX[i] << "," << concaveY[i] << "\n";
+            }
+
+            /*for(int i = 0; i < halfCoordinates; i++)
+            {
+                distanceOne[i] = sqrt((pow(xCoord[j] - xCoord[i],2)) + (pow(yCoord[j] - yCoord[i],2)));
+                j = i;
+                std::cout << distanceOne[i] << "\n";
+            }
+            for(int i = 0; i < halfCoordinates; i++)
+            {
+                distanceTwo[i] = sqrt((pow(concaveX[j] - concaveX[i],2)) + (pow(concaveY[j] - concaveY[i],2)));
+                j = i;
+                std::cout << distanceTwo[i] << "\n";
+            }*/
+
+            /*for(int i = 0; i < halfCoordinates; i++)
+            {
+                xCoord[i] - positionX;
+                yCoord[i] - positionY;
+                concaveX[i] - positionX;
+                concaveY[i] - positionY;
+                if(xCoord[i] && yCoord[i] < concaveX[i] && concaveY[i])
+                {
+                    convex = false;
+                    if(convex == false)
+                    break;
+                }
+                else
+                {
+                    convex = true;
+                }
+            }
+                std::cout << convex << "\n";*/
+            
+
 
     system("pause");
     return 0;
