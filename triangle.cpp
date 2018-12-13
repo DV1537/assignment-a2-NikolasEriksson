@@ -3,8 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-int main()
-{
+
     std::cout.setf(std::ios::fixed,std::ios::floatfield);
     std::cout.precision(3);
     int coordinates;
