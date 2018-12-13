@@ -9,6 +9,9 @@ class shape
     int halfCoordinates;
     float* xCoord;
     float* yCoord;
+    float kValue = 0;
+    float deltaX = 0;
+    float deltaY = 0;
 
 
     public:

@@ -37,23 +37,25 @@ int main()
     }
     testFile.close();
 
-    shape shapen(firstArray, halfCoordinates);
-    std::cout << shapen.getType() << "\n";
+    shape shape(firstArray, halfCoordinates);
 
-
-    /*polygon polygonen(firstArray, halfCoordinates);
-    std::cout <<"The area is " << polygonen.getArea() << "\n";
-    std::cout << "Center coordinates are: " << polygonen.position()[0] << ", " << polygonen.position()[1] << "\n";
-    std::cout << "The circumreference is: " << polygonen.circumference() << "\n";
-    polygonen.convex();
-    if(polygonen.convex() == 0)
+    if(shape.getType() == "Polygon")
     {
-        std::cout << "The polygon is concave." << "\n";
+        polygon polygonen(firstArray, halfCoordinates);
+        std::cout <<"The area is " << polygonen.getArea() << "\n";
+        std::cout << "Center coordinates are: " << polygonen.position()[0] << ", " << polygonen.position()[1] << "\n";
+        std::cout << "The circumreference is: " << polygonen.circumference() << "\n";
+        polygonen.convex();
+        if(polygonen.convex() == 0)
+        {
+            std::cout << "The polygon is concave." << "\n";
+        }
+        else
+        {
+            std::cout << "The polygon is convex." << "\n";
+        }
     }
-    else
-    {
-        std::cout << "The polygon is convex." << "\n";
-    }*/
+    
 
 
     system("Pause");

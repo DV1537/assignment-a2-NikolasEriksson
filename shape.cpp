@@ -19,9 +19,7 @@ shape::shape(float* firstArray, int halfCoordinates)
             yCoord[i] = firstArray[yBuffer];
             xBuffer += 2;
             yBuffer += 2;
-            std::cout << "The " << i + 1 << " coordinate" << " (" << xCoord[i] << "," << yCoord[i] << ") ";
         }
-        std::cout << std::endl;
 }
 
 std::string shape::getType()
@@ -31,21 +29,29 @@ std::string shape::getType()
     {
         type = "Polygon";
     }
-    if(halfCoordinates == 3 && xCoord[0] != xCoord[1] && xCoord[0] != xCoord[2])
+    else if(halfCoordinates == 3 && xCoord[0] != xCoord[1] && xCoord[0] != xCoord[2])
     {
         type = "Triangle";
     }
-    if(halfCoordinates > 1)
-    {
-        for(int i = 0; i < halfCoordinates; i++)
+    else if(halfCoordinates > 1)
+    {     
+        float* kValueArr = new float[halfCoordinates]; 
+        for (int i = 0; i < (halfCoordinates - 1); i++) 
         {
-            if(xCoord[i] == xCoord[i+1] || yCoord[i] == yCoord[i+1])
+            deltaX = (xCoord[i + 1] - xCoord[i]);
+            deltaY = (yCoord[i + 1] - yCoord[i]);
+            kValue = (deltaY / deltaX);
+            kValueArr[i] = kValue;
+        }
+        for (int i = 0; i < halfCoordinates; i++)
+        {
+            if(kValueArr[i] == kValueArr[i+1])
             {
                 type = "Line";
             }
         }
     }
-    if(halfCoordinates == 1)
+    else if(halfCoordinates == 1)
     {
         type = "Point";
     }

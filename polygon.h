@@ -1,10 +1,10 @@
 #ifndef polygon_h
 #define polygon_h
+#include "shape.h"
 
 class polygon : public shape
 {
     protected:
-        std::string type = "Polygon";
         int halfCoordinates;
         float* xCoord;
         float* yCoord;
@@ -16,7 +16,6 @@ class polygon : public shape
     public:
         polygon();
         polygon(float*, int);
-        //std::string getType();
         float getArea();
         float circumference();
         float* position();
