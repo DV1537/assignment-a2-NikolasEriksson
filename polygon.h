@@ -1,10 +1,10 @@
 #ifndef polygon_h
 #define polygon_h
 
-class polygon
+class polygon : public shape
 {
     protected:
-        //std::string type = "Polygon";
+        std::string type = "Polygon";
         int halfCoordinates;
         float* xCoord;
         float* yCoord;

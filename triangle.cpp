@@ -2,14 +2,9 @@
 #include <string>
 #include <cmath>
 #include <fstream>
+#include "triangle.h"
 
-
-    std::cout.setf(std::ios::fixed,std::ios::floatfield);
-    std::cout.precision(3);
-    int coordinates;
-    int xBuffer = 0;
-    int yBuffer = 1;
-    float a = 0;
+    
     float firstArray[6];
     float *xCoord = new float[3];
     float *yCoord = new float[3];
