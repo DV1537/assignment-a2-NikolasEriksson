@@ -4,6 +4,7 @@
 #include <fstream>
 #include "shape.h"
 #include "polygon.h"
+#include "triangle.h"
 
 int main()
 {
@@ -39,9 +40,21 @@ int main()
 
     shape shape(firstArray, halfCoordinates);
 
-    if(shape.getType() == "Line")
+    if(shape.getType() == "Point")
+    {
+        std::cout << "The form of all vertices is a Point" << "\n";
+    }
+    /*if(shape.getType() == "Line")
     {
         std::cout << "The form of all vertices are a Line" << "\n";
+    }*/
+    else if(shape.getType() == "Triangle")
+    {
+        triangle triangle(firstArray, halfCoordinates);
+        std::cout << "The form of all vertices are a Triangle" << "\n";
+        std::cout << "The circumreferemce is: " << triangle.circumference() << "\n";
+        std::cout << "The area is: " << triangle.getArea() << "\n";
+        std::cout << "The center position is: " << triangle.position()[0] << ", " << triangle.position()[1] << "\n";
     }
     else if(shape.getType() == "Polygon")
     {
@@ -59,7 +72,7 @@ int main()
         {
             std::cout << "The polygon is convex." << "\n";
             std::cout <<"The area is: " << polygon.getArea() << "\n";
-            std::cout << "Center coordinates are: " << polygon.position()[0] << ", " << polygon.position()[1] << "\n";
+            std::cout << "The center of the bounding box are: " << polygon.position()[0] << ", " << polygon.position()[1] << "\n";
             std::cout << "The circumreference is: " << polygon.circumference() << "\n";
         }
     }

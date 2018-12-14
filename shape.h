@@ -22,7 +22,7 @@ class shape
     float circumference() = 0;
     float* position() = 0;
     bool convex() = 0;
-    float distance(Shape s) = 0;*/
+    //float distance(Shape s) = 0;*/
 };
 
 #endif
