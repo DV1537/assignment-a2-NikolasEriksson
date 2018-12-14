@@ -25,13 +25,9 @@ shape::shape(float* firstArray, int halfCoordinates)
 std::string shape::getType()
 {
     std::string type;
-    if(halfCoordinates > 3)
+    if(halfCoordinates == 1)
     {
-        type = "Polygon";
-    }
-    else if(halfCoordinates == 3 && xCoord[0] != xCoord[1] && xCoord[0] != xCoord[2])
-    {
-        type = "Triangle";
+        type = "Point";
     }
     else if(halfCoordinates > 1)
     {     
@@ -49,12 +45,15 @@ std::string shape::getType()
             {
                 type = "Line";
             }
+            else if(halfCoordinates == 3 && xCoord[0] != xCoord[1] && xCoord[0] != xCoord[2])
+            {
+                type = "Triangle";
+            }
+            else if(halfCoordinates > 3)
+            {
+                type = "Polygon";
+            }
         }
     }
-    else if(halfCoordinates == 1)
-    {
-        type = "Point";
-    }
-    return type;
-
+return type;
 }

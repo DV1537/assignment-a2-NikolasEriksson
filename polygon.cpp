@@ -38,6 +38,10 @@ float polygon::getArea()
     {
     area = (abs(total/2));
     }
+    if(convex() == false)
+    {
+        return -1;
+    }
     return area;
 }
 

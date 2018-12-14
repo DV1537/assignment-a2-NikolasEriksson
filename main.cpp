@@ -39,24 +39,30 @@ int main()
 
     shape shape(firstArray, halfCoordinates);
 
-    if(shape.getType() == "Polygon")
+    if(shape.getType() == "Line")
     {
-        polygon polygonen(firstArray, halfCoordinates);
-        std::cout <<"The area is " << polygonen.getArea() << "\n";
-        std::cout << "Center coordinates are: " << polygonen.position()[0] << ", " << polygonen.position()[1] << "\n";
-        std::cout << "The circumreference is: " << polygonen.circumference() << "\n";
-        polygonen.convex();
-        if(polygonen.convex() == 0)
+        std::cout << "The form of all vertices are a Line" << "\n";
+    }
+    else if(shape.getType() == "Polygon")
+    {
+        polygon polygon(firstArray, halfCoordinates);
+        std::cout << "The form of all vertices are a Polygon" << "\n";
+        polygon.convex();
+        if(polygon.convex() == false)
         {
             std::cout << "The polygon is concave." << "\n";
+            std::cout << "Center coordinates are: " << polygon.position()[0] << ", " << polygon.position()[1] << "\n";
+            std::cout << "The circumreference is: " << polygon.circumference() << "\n";
+            std::cout << "The area is: " << polygon.getArea() << "\n";
         }
         else
         {
             std::cout << "The polygon is convex." << "\n";
+            std::cout <<"The area is: " << polygon.getArea() << "\n";
+            std::cout << "Center coordinates are: " << polygon.position()[0] << ", " << polygon.position()[1] << "\n";
+            std::cout << "The circumreference is: " << polygon.circumference() << "\n";
         }
     }
-    
-
 
     system("Pause");
     return 0;
