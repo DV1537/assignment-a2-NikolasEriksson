@@ -24,6 +24,39 @@ polygon::polygon(float* firstArray, int halfCoordinates)
         std::cout << std::endl;
 }
 
+std::string polygon::getType()
+{
+    float* deltaY = new float[halfCoordinates];
+    float* deltaX = new float[halfCoordinates];
+    float* kValue = new float[halfCoordinates];
+    for(int i = 0; i < (halfCoordinates - 1); i++)
+    {
+        deltaY[i] = yCoord[i+1] - yCoord[i];
+        deltaX[i] = xCoord[i+1] - xCoord[i];
+        kValue[i] = (deltaY[i]/deltaX[i]);
+    }
+    for(int i = 0; i < (halfCoordinates - 1); i++)
+    {
+        if(kValue[i] == kValue[i+1])
+        {
+            type = "Line";
+        }
+    }
+    if(halfCoordinates == 1)
+    {
+        type = "Point";
+    }
+    else if(halfCoordinates == 3 && xCoord[0] != xCoord[1] && xCoord[0] != xCoord[2])
+    {
+        type = "Triangle";
+    }
+    else if(type != "Triangle" || type != "Line" || type != "Point")
+    {
+        type = "Polygon";
+    }
+    return type;
+}
+
 float polygon::getArea()
 {
     float total = 0;
@@ -38,7 +71,7 @@ float polygon::getArea()
     {
     area = (abs(total/2));
     }
-    if(convex() == false)
+    if(convex() == false || area == 0)
     {
         return -1;
     }
@@ -47,12 +80,6 @@ float polygon::getArea()
 
 float polygon::circumference()
 {
-    float total = 0;
-    float xValue = 0;
-    float yValue = 0;
-    int lastCounter = 0;
-    float lastValueX = 0;
-    float lastValueY = 0;
     for(int i = 0; i < (halfCoordinates - 1); i++)
     {
         xValue = pow(xCoord[i+1] - xCoord[i],2);
@@ -70,8 +97,6 @@ float polygon::circumference()
 
 float* polygon::position()
 {
-float positionX = 0;
-float positionY = 0;
     for(int i = 0; i < halfCoordinates; i++)
     {
         positionX += xCoord[i];
@@ -111,6 +136,11 @@ bool polygon::convex()
         }
     }
     return true;
+}
+
+float polygon::distance(std::string)
+{
+    return distanceToShape;
 }
 
 polygon::~polygon(){}

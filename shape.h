@@ -1,28 +1,21 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 #include <string>
-#include <iostream>
 
 class shape
 {
     protected:
-    int halfCoordinates;
-    float* xCoord;
-    float* yCoord;
-    float kValue = 0;
-    float deltaX = 0;
-    float deltaY = 0;
-
 
     public:
     shape();
     shape(float*, int);
-    std::string getType();
-    /*float area() = 0;
-    float circumference() = 0;
-    float* position() = 0;
-    bool convex() = 0;
-    //float distance(Shape s) = 0;*/
+    virtual std::string getType() = 0;
+    virtual float getArea() = 0;
+    virtual float circumference() = 0;
+    virtual float* position() = 0;
+    virtual bool convex() = 0;
+    virtual float distance(std::string) = 0;
+    ~shape();
 };
 
 #endif
